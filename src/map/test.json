@@ -1,0 +1,105 @@
+[
+  {
+    "name": "万州区",
+    "longitude": "108.408661",
+    "latitude": "30.807667"
+  },
+  {
+    "name": "涪陵区",
+    "longitude": "107.38977",
+    "latitude": "29.703022"
+  },
+  {
+    "name": "荣昌区",
+    "longitude": "105.594623",
+    "latitude": "29.405002"
+  },{
+    "name": "开州区",
+    "longitude": "108.393135",
+    "latitude": "31.160711"
+  },{
+    "name": "铜梁区",
+    "longitude": "106.056404",
+    "latitude": "29.844811"
+  },{
+    "name": "潼南区",
+    "longitude": "105.840431",
+    "latitude": "30.190992"
+  },{
+    "name": "南川区",
+    "longitude": "107.099266",
+    "latitude": "29.15789"
+  },{
+    "name": "璧山区",
+    "longitude": "106.227305",
+    "latitude": "29.592024"
+  },{
+    "name": "永川区",
+    "longitude": "105.927001",
+    "latitude": "29.356311"
+  },{
+    "name": "合川区",
+    "longitude": "106.27613",
+    "latitude": "29.972084"
+  },{
+    "name": "江津区",
+    "longitude": "106.259281",
+    "latitude": "29.290069"
+  },{
+    "name": "渝中区",
+    "longitude": "106.568896",
+    "latitude": "29.552736"
+  },{
+    "name": "大渡口区",
+    "longitude": "106.482346",
+    "latitude": "29.484527"
+  },{
+    "name": "江北区",
+    "longitude": "106.574271",
+    "latitude": "29.606703"
+  },{
+    "name": "沙坪坝区",
+    "longitude": "106.456878",
+    "latitude": "29.541144"
+  },{
+    "name": "九龙坡区",
+    "longitude": "106.510676",
+    "latitude": "29.502272"
+  },{
+    "name": "南岸区",
+    "longitude": "106.644447",
+    "latitude": "29.50126"
+  },{
+    "name": "北碚区",
+    "longitude": "106.395612",
+    "latitude": "29.805107"
+  },{
+    "name": "綦江区",
+    "longitude": "106.651361",
+    "latitude": "29.028066"
+  
+  },{
+    "name": "大足区",
+    "longitude": "105.721733",
+    "latitude": "29.707032"
+  
+  },{
+    "name": "渝北区",
+    "longitude": "106.631187",
+    "latitude": "29.718142"
+  },{
+    "name": "巴南区",
+    "longitude": "106.540256",
+    "latitude": "29.402408"
+  
+  },{
+    "name": "黔江区",
+    "longitude": "108.770677",
+    "latitude": "29.533609"
+  
+  },{
+    "name": "长寿区",
+    "longitude": "107.080734",
+    "latitude": "29.857912"
+  }
+]
