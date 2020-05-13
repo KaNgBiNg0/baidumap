@@ -1,157 +1,169 @@
+* {
+	padding: 0;
+	margin: 0;
+}
 
-    	*{
-            padding: 0;
-            margin: 0;
-        }
-        body,html {
-			width: 100%;
-			height: 100%;
-			margin: 0;
-			font-family: "微软雅黑";
-		}
-		
-		#allMap {
-			margin: 0px auto;
-			height:100%;
-			width: 100%;
-			border-radius: 1px solid #000;
-		}
-		#mock{
-			width: 25%;
-			position: absolute;
-			height: calc(100vh - 50px );
-			left: 0;
-			top: 50px;
-			background: #fff;
-			text-align: center;
-			box-shadow: 0 0 10px rgba(0,0,0,0.3);
-			padding: 10px;
-			box-sizing: border-box;
-		}
-		#comAddress{
-			color:#666666;
-			font-size: 14px;
-		}
-		.mockBottom{
-			width: 100%;
-			height: calc(100% - 100px);
-			overflow: auto;
-			margin-top: 10px;
-		}
-		.itemBottom{
-			width: 100%;
-			height: 120px;
-			padding-bottom: 10px;
-			border-bottom: 1px solid #eee;
-		}
-		#mockBottom .itemBottom img{
-			width: 100px;
-			height: 100px;
-		}
-		#mockBottom .itemBottom{
-			text-align: left;
-			color: #4a4a4a;
-		}
-		.itemBottomRight{
-			width: calc(100% - 105px);
-			float: right;
-		}
-		.mockLeft{
-			position: absolute;
-			right: -40px;
-			top: 50%;
-			width: 40px;
-			height: 60px;
-			transform: translateY(-50%);
-			background-color: #fff;
-			vertical-align:middle;
-			line-height: 60px;
-			box-shadow: 2px 0 4px rgba(0,0,0,0.3);
-			border-top-right-radius: 4px;
-			border-bottom-right-radius: 4px;
-		}
-		.mockRight{
-			position: absolute;
-			left: -40px;
-			top: 50%;
-			width: 40px;
-			height: 60px;
-			transform: translateY(-50%);
-			background-color: #fff;
-			vertical-align:middle;
-			line-height: 60px;
-			box-shadow: 0 0 2px rgba(0,0,0,0.3);
-			border-top-left-radius: 4px;
-			border-bottom-left-radius: 4px;
-		}
-		#mock img{
-			width: 20px;
-			height: 20px;
-			vertical-align: middle;
-		}
-		.header{
-			height: 50px;
-			width: 100%;
-			background-color: #fff;
-			position: absolute;
-			border-bottom: 1px solid #eee;
-			left: 0;
-			top: 0;
-			z-index: 2;
-			box-shadow: 0 0 10px rgba(0,0,0,0.3);
-		}
-        /*隐藏地图控件*/
-        /*.anchorBL, .BMap_cpyCtrl {
+body,
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	font-family: "微软雅黑";
+}
+
+#allMap {
+	margin: 0px auto;
+	height: 100%;
+	width: 100%;
+	border-radius: 1px solid #000;
+}
+
+#mock {
+	width: 25%;
+	position: absolute;
+	height: calc(100vh - 50px);
+	left: 0;
+	top: 50px;
+	background: #fff;
+	text-align: center;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+#comAddress {
+	color: #666666;
+	font-size: 14px;
+}
+
+.mockBottom {
+	width: 100%;
+	height: calc(100% - 100px);
+	overflow: auto;
+	margin-top: 10px;
+
+}
+
+.itemBottom {
+	width: 100%;
+	height: 120px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+#mockBottom .itemBottom img {
+	width: 100px;
+	height: 100px;
+}
+
+#mockBottom .itemBottom {
+	text-align: left;
+	color: #4a4a4a;
+}
+
+.itemBottomRight {
+	width: calc(100% - 105px);
+	float: right;
+}
+
+.mockLeft {
+	position: absolute;
+	right: -40px;
+	top: 50%;
+	width: 40px;
+	height: 60px;
+	transform: translateY(-50%);
+	background-color: #fff;
+	vertical-align: middle;
+	line-height: 60px;
+	box-shadow: 2px 0 4px rgba(0, 0, 0, 0.3);
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.mockRight {
+	position: absolute;
+	left: -40px;
+	top: 50%;
+	width: 40px;
+	height: 60px;
+	transform: translateY(-50%);
+	background-color: #fff;
+	vertical-align: middle;
+	line-height: 60px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+#mock img {
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+
+.header {
+	height: 50px;
+	width: 100%;
+	background-color: #fff;
+	position: absolute;
+	border-bottom: 1px solid #eee;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/*隐藏地图控件*/
+/*.anchorBL, .BMap_cpyCtrl {
             display: none;
         }*/
-        /*地图聚合样式*/
-        .bubble p {
-        	width: 80px;
-        	line-height: 20px;
-            text-align: center;
-            color: #fff;
-            font-size: 14px;
-        }
-        .bubble .name {
-			margin-top: 20px;
-        }
-        .bubble .count {
-			margin-top: 5px;
-        }
-        .ZLQbubble{
-			text-align: center;
-			padding: 0px 5px;
-        }
-        .ZLQbubble span{
-        	height: 22px;
-        	line-height: 22px;
-        	color: #fff;
-          font-size: 14px;
-        }
-        .ZLQbubble .count{
-        	font-weight: bold;
-        }
-        .drawing , .exit{
-        	position: absolute;
-        	top: 10px;
-        	right: 70px;
-        	background: #46ACFF;
-        	border: 0px;
-        	color: white;
-        	width: 120px;
-        	height: 25px;
-        	line-height: 25px;
-        	font-size: 15px;
-        	font-weight: bold;
-        	border-radius: 15px;
-					outline:none;
-        }
-				.findAddress{
-					width: 800px;
-					height: 30px;
-					position: absolute;
-        	top: 10px;
-					left: 100px;
-					background-color: transparent;
-				}
+/*地图聚合样式*/
+.bubble p {
+	width: 80px;
+	line-height: 20px;
+	text-align: center;
+	color: #fff;
+	font-size: 14px;
+}
 
+.bubble .name {
+	margin-top: 20px;
+}
+
+.bubble .count {
+	margin-top: 5px;
+}
+
+.ZLQbubble {
+	text-align: center;
+	padding: 0px 5px;
+}
+
+.ZLQbubble span {
+	height: 22px;
+	line-height: 22px;
+	color: #fff;
+	font-size: 14px;
+}
+
+.ZLQbubble .count {
+	font-weight: bold;
+}
+
+.drawing,
+.exit {
+	position: absolute;
+	top: 10px;
+	right: 70px;
+	background: #46ACFF;
+	border: 0px;
+	color: white;
+	width: 120px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 15px;
+	font-weight: bold;
+	border-radius: 15px;
+	outline: none;
+}

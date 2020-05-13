@@ -1,18 +1,19 @@
 <template>
   <div id="Map_search">
     <div class="mock" id="mock" style=" z-index: 2;" v-show="mock">
-      <div
-        style="
-          width: 100%;
-          padding: 10px 0;
-          border-bottom: 1px solid #eee;
-          text-align: left;
-        "
-      >
-        <h3 style="margin-bottom: 5px;" id="comName"></h3>
-        <span style="text-indent: 2em;" id="comAddress"></span>
+      <div style="padding: 5px 0;border-bottom:1px solid #eee">
+        <el-input placeholder="请输入内容" v-model="mockKeyWord" class="input-with-select" >
+          <i slot="suffix" class="el-input__icon el-icon-search" @click="filterByName"></i>
+        </el-input>
       </div>
-      <div class="mockBottom" id="mockBottom"></div>
+      <div class="mockBottom" id="mockBottom">
+        <div v-if="searchRESULT" v-for="(item,index) in searchRESULT" :key="index" class="itemBottom">
+          {{index+1}}. {{item.title}}
+        </div>
+        <div v-if="drawRESULT" v-for="(item,index) in drawRESULT" :key="index" class="itemBottom">
+          {{index+1}}. {{item.name}}
+        </div>
+      </div>
       <div class="mockLeft" @click="mock = false">
         <img src="./img/left.png" alt="" srcset="" />
       </div>
@@ -21,6 +22,10 @@
       </div>
     </div>
     <div class="header">
+      <showKeys class="showKeys" v-show="!mock"></showKeys>
+      <searchKeyCon class="searchKeyCon" :formInline="formInline" :searchByStationName="searchByStationName">
+
+      </searchKeyCon>
       <button
         class="drawing"
         id="draw"
@@ -37,26 +42,6 @@
       >
         退出画圈找企业
       </button>
-      <div class="findAddress">
-        <el-form
-          :inline="true"
-          :model="formInline"
-          class="demo-form-inline"
-          size="mini"
-        >
-          <el-form-item label="查询地址">
-            <el-input v-model="formInline.address"></el-input>
-          </el-form-item>
-          <!-- <el-form-item label="查询结果（经纬度）">
-             <el-input v-model="formInline.addressReasult"></el-input>
-          </el-form-item> -->
-          <el-form-item>
-            <el-button type="primary" @click="searchByStationName"
-              >查询</el-button
-            >
-          </el-form-item>
-        </el-form>
-      </div>
     </div>
 
     <baidu-map
@@ -96,6 +81,7 @@
         :keyword="searchkeyword"
         :auto-viewport="true"
         @searchcomplete="searchcomplete"
+        :panel="false"
       ></bm-local-search>
       <bm-polyline
         :path="polyPointArray"
@@ -114,6 +100,9 @@ import BmMarker from 'vue-baidu-map/components/overlays/Marker.vue'
 import BmPolyline  from 'vue-baidu-map/components/overlays/Polyline.vue'
 import BmPolygon  from 'vue-baidu-map/components/overlays/Polygon.vue'
 import BmLocalSearch from 'vue-baidu-map/components/search/LocalSearch.vue'
+
+import searchKeyCon from './searchKeyCon'
+import showKeys from './showKeys'
   export default {
     components: {
       BaiduMap,
@@ -121,16 +110,22 @@ import BmLocalSearch from 'vue-baidu-map/components/search/LocalSearch.vue'
       BmMarker,
       BmLocalSearch,
       BmPolyline,
-      BmPolygon
+      BmPolygon,
+      showKeys,
+      searchKeyCon
     },
     data(){
       return{
+        searchRESULT:[],
+        filterRESULT:[],
+        drawRESULT:[],
+        mockKeyWord:'',
         formInline: {
           address: '',
           addressReasult: ''
         },
         labelShow:false,
-        searchkeyword:'北京',
+        searchkeyword:'',
         //多边形
         polygon:null,
         ploygonOpacity:0.4,
@@ -472,6 +467,9 @@ import BmLocalSearch from 'vue-baidu-map/components/search/LocalSearch.vue'
             }
           }
           this.markerArrs = pointInPolygonArray;
+          this.searchRESULT = [];
+          this.filterRESULT = [];
+          this.drawRESULT = pointInPolygonArray;
       },
       isPointInPolygon(point, bound, pointArray) {
 
@@ -572,8 +570,6 @@ import BmLocalSearch from 'vue-baidu-map/components/search/LocalSearch.vue'
                 mockEle.style.right = "auto";
               }
               this.mock = true;
-              var comName = document.getElementById('comName')
-              comName.innerHTML = data.name;
               const dataToShow = [{lat:data.latitude,lng:data.longitude}]
               this.showAddressDetail(dataToShow);
           }
@@ -590,8 +586,20 @@ import BmLocalSearch from 'vue-baidu-map/components/search/LocalSearch.vue'
       searchByStationName(){
         this.searchkeyword = this.formInline.address;
       },
+      filterByName(){
+        const key = this.mockKeyWord;
+      },
       searchcomplete(results){
-        console.log(results)
+        if(results){
+          this.searchRESULT = results.Ir;
+          this.drawRESULT = [];
+          this.filterRESULT = [];
+          this.mock = true;
+        }else{
+          this.searchRESULT = [];
+          this.mock = false;
+        }
+        
       },
       /* 显示浮层的信息 */
       showAddressDetail(data){
@@ -660,6 +668,21 @@ import BmLocalSearch from 'vue-baidu-map/components/search/LocalSearch.vue'
 #Map_search
   width: 100%;
   height: 100%;
+  .searchKeyCon
+    position absolute
+    left 150px
+    top 0
+    width 500px
+    height 50px
+  .showKeys
+    position absolute
+    left 0 
+    top 50px
+    height 20px
+    width 100%
+    background-color #fff
+    border-bottom 1px solid #eee
+    border-top 1px solid #eee
   .bm-view
     width 100%
     height 100%
