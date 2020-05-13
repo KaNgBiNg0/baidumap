@@ -25,8 +25,8 @@
       </div>
     </div>
     <div class="header">
-      <showKeys class="showKeys" v-show="!mock"></showKeys>
-      <searchKeyCon class="searchKeyCon" :formInline="formInline" :searchByStationName="searchByStationName">
+      <showKeys class="showKeys" v-if="!mock" v-show="tagsShow" :tags="tags"></showKeys>
+      <searchKeyCon class="searchKeyCon" :formInline="formInline" :searchByStationName="searchByStationName" :addtags="addtags" :removetags="removetags">
 
       </searchKeyCon>
       <button
@@ -171,7 +171,33 @@ import showKeys from './showKeys'
         adds:[], //浮层显示数组
         addindex:0,
         mock:false,
-        
+
+        /* tags */
+        tagsShow:false,
+        tags: [
+          
+        ],
+        allTags:[
+          {name:'备选项1'},
+          {name:'备选项2'},
+          {name:'备选项3'},
+          {name:'备选项4'},
+          {name:'备选项5'},
+          {name:'备选项6'},
+          {name:'备选项7'},
+          {name:'备选项8'},
+          {name:'备选项9'},
+          {name:'备选项10'},
+        ]
+      }
+    },
+    watch: {
+      tags(val,old){
+        if(this.tags.length===0){
+          this.tagsShow = false;
+        }else{
+          this.tagsShow = true;
+        }
       }
     },
     methods: {
@@ -181,6 +207,17 @@ import showKeys from './showKeys'
           this.center.lat = 39.915;
           this.zoom = 13;
           if(map){this.map = map;}
+      },
+      /* tags */
+      addtags(index){
+        this.tags.push(this.allTags[index-1])
+      },
+      removetags(index){
+        const allTags = this.allTags;
+        const tags = this.tags.filter((value,i)=>{
+          return value.name !== allTags[index-1].name
+          })
+        this.tags=tags;
       },
       /* 初始化画图 */
       drawing(){
@@ -272,12 +309,10 @@ import showKeys from './showKeys'
           
       },
       isPointInPolygon(point, bound, pointArray) {
-
         //首先判断该点是否在外包矩形内，如果不在直接返回false
         if (!bound.containsPoint(point)) {
           return false;
         }
-
         //如果在外包矩形内则进一步判断
         //该点往右侧发出的射线和矩形边交点的数量,若为奇数则在多边形内，否则在外
         var crossPointNum = 0;
@@ -333,6 +368,7 @@ import showKeys from './showKeys'
             this.addMarker(this.thirdlyData)
           }
       },
+      /* 移动 */
       moveEnd(e){
         const {lng, lat} = e.target.getCenter()
         this.center.lng = lng;
@@ -343,6 +379,7 @@ import showKeys from './showKeys'
             this.addMarker(this.thirdlyData)
         }
       },
+      /* 添加点 */
       addoverlay(){
         console.log(12345)
       },
@@ -404,7 +441,7 @@ import showKeys from './showKeys'
         }
         
       },
-      /* 显示浮层的信息 */
+      /* 显示浮层的信息 目前好像没啥用 */
       showAddressDetail(data){
         let adds=[];
         for (let index = 0; index < data.length; index++) {
@@ -421,45 +458,46 @@ import showKeys from './showKeys'
         this.addindex++;
       },
       geocodeSearch(pt) {
-		if (index < adds.length - 1) {
-			setTimeout(window.bdGEO, 400);
-		}
-		myGeo.getLocation(pt, function (rs) {
-			var addComp = rs.addressComponents;
-			var item =  "商圈:" + rs.business +
-				" </br> 地址：" + addComp.province  + addComp.city  + addComp.district  + addComp.street +
-				 addComp.streetNumber + "";
-			console.log(item)
-			if(adds.length === 1){
-				console.log('title')
-				var comAddress = document.getElementById('comAddress')
-				comAddress.innerHTML = item;
-					/* 通过其查找 企业 */
-			const dataAll = [
-						{
-							lng:116.313082,lat:40.047674
-						},
-						{
-							lng:116.328749,lat:40.026922
-						},
-						{
-							lng:116.347571,lat:39.988698
-						},
-						{
-							lng:116.316163,lat:39.998333
-						},
-						{
-							lng:116.313076,lat:40.059011
-						},
-					]
-					var mockBottom = document.getElementById('mockBottom')
-					mockBottom.innerHTML ='';
-						showAddressDetail(dataAll);
+        if (index < adds.length - 1) {
+          setTimeout(window.bdGEO, 400);
+        }
+		    myGeo.getLocation(pt, function (rs) {
+          var addComp = rs.addressComponents;
+          var item =  "商圈:" + rs.business +
+            " </br> 地址：" + addComp.province  + addComp.city  + addComp.district  + addComp.street +
+            addComp.streetNumber + "";
+          console.log(item)
+          if(adds.length === 1){
+            console.log('title')
+            var comAddress = document.getElementById('comAddress')
+            comAddress.innerHTML = item;
+              /* 通过其查找 企业 */
+          const dataAll = [
+                {
+                  lng:116.313082,lat:40.047674
+                },
+                {
+                  lng:116.328749,lat:40.026922
+                },
+                {
+                  lng:116.347571,lat:39.988698
+                },
+                {
+                  lng:116.316163,lat:39.998333
+                },
+                {
+                  lng:116.313076,lat:40.059011
+                },
+              ]
+              var mockBottom = document.getElementById('mockBottom')
+              mockBottom.innerHTML ='';
+                showAddressDetail(dataAll);
 
-			}else{
-				createEle(item)
-			}
-    });},
+          }else{
+            createEle(item)
+          }
+        });
+      },
 
 
     },
