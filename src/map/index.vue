@@ -64,9 +64,22 @@
       :double-click-zoom="!isInDrawing"
       :keyboard="!isInDrawing"
     >
-      <bm-marker
+      
+      <bm-local-search
+        :keyword="searchkeyword"
+        :auto-viewport="true"
+        @searchcomplete="searchcomplete"
+        :panel="false"
+      ></bm-local-search>
+      <bm-polyline
+        :path="polyPointArray"
+        stroke-color="blue"
+        :stroke-opacity="0.5"
+        :stroke-weight="2"
+      />
+      <bml-marker-clusterer :averageCenter="true" >
+        <!-- <bm-marker
         :position="{ lng: item.longitude, lat: item.latitude }"
-        animation="BMAP_ANIMATION_BOUNCE"
         v-for="(item, index) in markerArrs"
         :key="index"
         @click="infoWindowOpen(item, $event)"
@@ -82,19 +95,17 @@
           }"
           :offset="{ width: -5, height: 30 }"
         />
-      </bm-marker>
-      <bm-local-search
-        :keyword="searchkeyword"
-        :auto-viewport="true"
-        @searchcomplete="searchcomplete"
-        :panel="false"
-      ></bm-local-search>
-      <bm-polyline
-        :path="polyPointArray"
-        stroke-color="blue"
-        :stroke-opacity="0.5"
-        :stroke-weight="2"
-      />
+      </bm-marker> -->
+        <my-overlay
+          text="点击我"
+          :position="{ lng: item.longitude, lat: item.latitude }"
+          v-for="(item, index) in markerArrs"
+          :key="index"
+          :companyData="item"
+          :infoWindowOpen="infoWindowOpen"
+        >
+        </my-overlay>
+      </bml-marker-clusterer>
     </baidu-map>
   </div>
 </template>
@@ -105,17 +116,20 @@ import BmLabel from 'vue-baidu-map/components/overlays/Label.vue'
 import BmMarker from 'vue-baidu-map/components/overlays/Marker.vue'
 import BmPolyline  from 'vue-baidu-map/components/overlays/Polyline.vue'
 import BmPolygon  from 'vue-baidu-map/components/overlays/Polygon.vue'
+/* import BmOverlay  from 'vue-baidu-map/components/overlays/Overlay.vue' */
 import BmLocalSearch from 'vue-baidu-map/components/search/LocalSearch.vue'
-
+import {BmlMarkerClusterer} from 'vue-baidu-map'
 
 import area from './json/ares.json'
 import firstData from './json/firstData.json'
 import secondData from './json/secondData.json'
 import thirdlyData from './json/thirdData.json'
+import abc from './json/abc.json'
 
 import searchCompanyInput from './searchCompanyInput'
 import searchKeyCon from './searchKeyCon'
 import showKeys from './showKeys'
+import MyOverlay from './MyOverlay'
 
   export default {
     components: {
@@ -125,17 +139,31 @@ import showKeys from './showKeys'
       BmLocalSearch,
       BmPolyline,
       BmPolygon,
-      
+      BmlMarkerClusterer,
+
+      MyOverlay,
       searchCompanyInput,
       showKeys,
       searchKeyCon
     },
     data(){
       return{
+        abc,
         area,
         firstData,
         secondData,
         thirdlyData,
+        /* 点聚合 */
+        /* stylesInMarker:[
+          {
+          url, //图片的url 地址必填
+          size, // size 图片大小 必填项
+          opt_anchor,
+          textColor, 
+          opt_textSize
+           }
+        ], */
+        active: false,
         /* 界限 */
         searchRESULT:[],
         filterRESULT:[],
@@ -207,6 +235,13 @@ import showKeys from './showKeys'
       }
     },
     methods: {
+      draw ({BMap, map, el, overlay}) {
+       /*  debugger; */
+        console.log(BMap, map, el, overlay)
+      /* const pixel = map.pointToOverlayPixel(new BMap.Point(116.404, 39.915))
+      el.style.left = pixel.x - 60 + 'px'
+      el.style.top = pixel.y - 20 + 'px' */
+    },
       /* 初始化地图 */
       initMap ({BMap, map}) {
           this.center.lng = 116.404;
@@ -393,13 +428,13 @@ import showKeys from './showKeys'
       infoWindowOpen(data,event){
         // 判断当前zoom
         const zoomLevel = this.zoom; //获取地图缩放级别
+        const lng=data.longitude;
+        const lat=data.latitude ;
           if (zoomLevel <= 13) {
-            const {lng, lat} = event.point;
             this.center.lng = lng;
             this.center.lat = lat;
             this.zoom = 14;
           } else if (zoomLevel > 13 && zoomLevel <= 15) {
-            const {lng, lat} = event.point;
             this.center.lng = lng;
             this.center.lat = lat;
             this.zoom = 16;
@@ -530,5 +565,21 @@ import showKeys from './showKeys'
   background-color: blue;
   z-index: 2;
 }
+/* .sample {
+  width: 20px;
+  height: 10px;
+  line-height: 10px;
+  background: rgba(0,0,0,0.5);
+  overflow: hidden;
+  box-shadow: 0 0 2px #000;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: absolute;
+}
+.sample.active {
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+} */
   
 </style>

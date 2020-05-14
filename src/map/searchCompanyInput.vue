@@ -1,7 +1,7 @@
 <template>
   <div id="searchCompanyInput">
     <input type="text" style="width:290px;height:40px;"><input type="button" value="查询" style="width:60px;height:40px;outline:none;background:#1493fa;">
-    <div class="searchResult" v-show="true"></div>
+    <div class="searchResult" v-show="inSearch"></div>
   </div>
 </template>
 
