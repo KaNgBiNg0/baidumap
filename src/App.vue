@@ -17,7 +17,7 @@ export default {
 
 <style lang="stylus" ref="stylesheet/stylus" >
 #app{
-  width 100%
-  height 100%
+  width 1920px
+  height 1080px
 }
 </style>

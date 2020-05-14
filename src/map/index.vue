@@ -1,6 +1,6 @@
 <template>
   <div id="Map_search">
-    <div class="mock" id="mock" style=" z-index: 2;" v-show="mock">
+    <!-- <div class="mock" id="mock" style=" z-index: 2;" v-show="mock">
       <div style="padding: 5px 0;border-bottom:1px solid #eee">
         <el-input placeholder="请输入内容" v-model="mockKeyWord" class="input-with-select" >
           <i slot="suffix" class="el-input__icon el-icon-search" @click="filterByName"></i>
@@ -45,8 +45,11 @@
       >
         退出画圈找企业
       </button>
+    </div> -->
+    <div class="tagsCheckedAndDraw">
+      12345
     </div>
-
+    <searchCompanyInput></searchCompanyInput>
     <baidu-map
       class="bm-view"
       ak="gs9pxTGgbgUBhK9d6nmv8U6jnUyVx9Y4"
@@ -110,6 +113,7 @@ import firstData from './json/firstData.json'
 import secondData from './json/secondData.json'
 import thirdlyData from './json/thirdData.json'
 
+import searchCompanyInput from './searchCompanyInput'
 import searchKeyCon from './searchKeyCon'
 import showKeys from './showKeys'
 
@@ -121,6 +125,7 @@ import showKeys from './showKeys'
       BmLocalSearch,
       BmPolyline,
       BmPolygon,
+      searchCompanyInput,
       showKeys,
       searchKeyCon
     },
@@ -504,27 +509,25 @@ import showKeys from './showKeys'
   }
 </script>
 
-<style scoped lang="stylus">
+<style scoped>
 @import "./css/style.css";
-#Map_search
+#Map_search{
   width: 100%;
   height: 100%;
-  .searchKeyCon
-    position absolute
-    left 150px
-    top 0
-    width 500px
-    height 50px
-  .showKeys
-    position absolute
-    left 0 
-    top 50px
-    height 20px
-    width 100%
-    background-color #fff
-    border-bottom 1px solid #eee
-    border-top 1px solid #eee
-  .bm-view
-    width 100%
-    height 100%
+  position: relative;
+}
+.bm-view{
+  width: 100%;
+  height: 100%;
+}
+.tagsCheckedAndDraw{
+  position: absolute;
+  left: 1185px;
+  top: 100px;
+  width:375px;
+  height: 40px;
+  background-color: blue;
+  z-index: 2;
+}
+  
 </style>
