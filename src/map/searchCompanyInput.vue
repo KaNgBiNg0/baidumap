@@ -1,6 +1,7 @@
 <template>
   <div id="searchCompanyInput">
-    <div class="searchResult" v-show="inSearch"></div>
+    <input type="text" style="width:290px;height:40px;"><input type="button" value="查询" style="width:60px;height:40px;outline:none;background:#1493fa;">
+    <div class="searchResult" v-show="true"></div>
   </div>
 </template>
 
@@ -17,12 +18,18 @@
 <style scoped>
 #searchCompanyInput{
   width: 350px;
-  height: 40px;
-  background-color: aqua;
+  height: 42px;
   position: absolute;
   left: 360px;
   top: 100px;
   z-index: 2;
+  text-align: center;
+  line-height: 40px;
+  box-sizing: content-box;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#searchCompanyInput input{
+  color:#fff;
 }
 .searchResult{
   position: absolute;
