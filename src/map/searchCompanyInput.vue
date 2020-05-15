@@ -32,7 +32,6 @@
   line-height: 40px;
   box-sizing: content-box;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  pointer-events: auto;
 
   input[type=text] {
     text-align: left;
