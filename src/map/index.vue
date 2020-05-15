@@ -39,7 +39,7 @@
         </my-overlay>
     </baidu-map>
   
-    <div id="mapTools">
+    <div id="mapTools" class="disable">
 
       <div class="topBlank"></div>
     
