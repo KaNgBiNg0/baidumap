@@ -14,8 +14,8 @@
       :dragging="!isInDrawing"
       :double-click-zoom="!isInDrawing"
       :keyboard="!isInDrawing"
+      :min-zoom=5
     >
-      
       <bm-local-search
         :keyword="searchkeyword"
         :auto-viewport="true"
@@ -28,7 +28,7 @@
         :stroke-opacity="0.5"
         :stroke-weight="2"
       />
-      <bml-marker-clusterer :averageCenter="true" >
+      
         <!-- <bm-marker
         :position="{ lng: item.longitude, lat: item.latitude }"
         v-for="(item, index) in markerArrs"
@@ -48,7 +48,6 @@
         />
       </bm-marker> -->
         <my-overlay
-          text="点击我"
           :position="{ lng: item.longitude, lat: item.latitude }"
           v-for="(item, index) in markerArrs"
           :key="index"
@@ -56,7 +55,6 @@
           :infoWindowOpen="infoWindowOpen"
         >
         </my-overlay>
-      </bml-marker-clusterer>
     </baidu-map>
   
     <div id="mapTools" class="disable">
@@ -432,18 +430,18 @@ import companyDataPanel from './companyDataPanel';
             this.center.lat = lat;
             this.zoom = 16;
           } else if (zoomLevel > 15) {
-					    var mockEle = document.getElementById('mock');
+					    /* var mockEle = document.getElementById('mock');
             	if (event.clientX < document.documentElement.clientWidth / 2) {
                 mockEle.style.right = "0";
                 mockEle.style.left = "auto";
               } else {
                 mockEle.style.left = "0";
                 mockEle.style.right = "auto";
-              }
+              } */
               this.mock = true;
-              this.filterRESULT = [{name:'这里应该是查询的数据！！！点击项，显示项下所有企业信息。'}]
+              /* this.filterRESULT = [{name:'这里应该是查询的数据！！！点击项，显示项下所有企业信息。'}]
               this.drawRESULT = [];
-              this.searchRESULT = [];
+              this.searchRESULT = []; */
               const dataToShow = [{lat:data.latitude,lng:data.longitude}]
               this.showAddressDetail(dataToShow);
           }

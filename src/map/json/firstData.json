@@ -28,66 +28,66 @@
   "latitude": "39.911354",
   "count": "290"
 },
-  { "name": "万州区", "longitude": "108.408661", "latitude": "30.807667"},
-  { "name": "涪陵区", "longitude": "107.38977", "latitude": "29.703022" },
-  { "name": "荣昌区", "longitude": "105.594623", "latitude": "29.405002" },
-  { "name": "开州区", "longitude": "108.393135", "latitude": "31.160711" },
-  { "name": "铜梁区", "longitude": "106.056404", "latitude": "29.844811" },
-  { "name": "潼南区", "longitude": "105.840431", "latitude": "30.190992" },
-  { "name": "南川区", "longitude": "107.099266", "latitude": "29.15789" },
-  { "name": "璧山区", "longitude": "106.227305", "latitude": "29.592024" },
-  { "name": "永川区", "longitude": "105.927001", "latitude": "29.356311" },
-  { "name": "合川区", "longitude": "106.27613", "latitude": "29.972084" },
-  { "name": "江津区", "longitude": "106.259281", "latitude": "29.290069" },
+  { "name": "万州区", "longitude": "108.408661", "latitude": "30.807667","count":"120"},
+  { "name": "涪陵区", "longitude": "107.38977", "latitude": "29.703022" ,"count":"120"},
+  { "name": "荣昌区", "longitude": "105.594623", "latitude": "29.405002","count":"120" },
+  { "name": "开州区", "longitude": "108.393135", "latitude": "31.160711","count":"120" },
+  { "name": "铜梁区", "longitude": "106.056404", "latitude": "29.844811","count":"120" },
+  { "name": "潼南区", "longitude": "105.840431", "latitude": "30.190992","count":"120" },
+  { "name": "南川区", "longitude": "107.099266", "latitude": "29.15789","count":"120" },
+  { "name": "璧山区", "longitude": "106.227305", "latitude": "29.592024","count":"120" },
+  { "name": "永川区", "longitude": "105.927001", "latitude": "29.356311","count":"120" },
+  { "name": "合川区", "longitude": "106.27613", "latitude": "29.972084","count":"120" },
+  { "name": "江津区", "longitude": "106.259281", "latitude": "29.290069","count":"120" },
   {
 "name": "渝中区",
-"longitude": "106.568896","latitude":"29.552736"
+"longitude": "106.568896","latitude":"29.552736","count":"120"
 },
 {
 "name": "大渡口区",
-"longitude": "106.482346","latitude":"29.484527"
+"longitude": "106.482346","latitude":"29.484527","count":"120"
 
 }, {
 "name": "江北区",
-"longitude": "106.574271","latitude":"29.606703"
+"longitude": "106.574271","latitude":"29.606703","count":"120"
 }, {
 "name": "沙坪坝区",
-"longitude": "106.456878","latitude":"29.541144"
+"longitude": "106.456878","latitude":"29.541144","count":"120"
 
 }, {
 "name": "九龙坡区",
-"longitude": "106.510676","latitude":"29.502272"
+"longitude": "106.510676","latitude":"29.502272","count":"120"
 
 }, {
 "name": "南岸区",
-"longitude": "106.644447","latitude":"29.50126"
+"longitude": "106.644447","latitude":"29.50126","count":"120"
 
 }, {
 "name": "北碚区",
-"longitude": "106.395612","latitude":"29.805107"
+"longitude": "106.395612","latitude":"29.805107","count":"120"
 
 }, {
 "name": "綦江区",
-"longitude": "106.651361","latitude":"29.028066"
+"longitude": "106.651361","latitude":"29.028066","count":"120"
 
 }, {
 "name": "大足区",
-"longitude": "105.721733","latitude":"29.707032"
+"longitude": "105.721733","latitude":"29.707032","count":"120"
 
 }, {
 "name": "渝北区",
-"longitude": "106.631187","latitude":"29.718142"
+"longitude": "106.631187","latitude":"29.718142","count":"120"
 
 }, {
 "name": "巴南区",
-"longitude": "106.540256","latitude":"29.402408"
+"longitude": "106.540256","latitude":"29.402408","count":"120"
 
 }, {
 "name": "黔江区",
-"longitude": "108.770677","latitude":"29.533609"
+"longitude": "108.770677","latitude":"29.533609","count":"120"
 
 }, {
 "name": "长寿区",
-"longitude": "107.080734","latitude":"29.857912"
+"longitude": "107.080734","latitude":"29.857912","count":"120"
 }
 ]
