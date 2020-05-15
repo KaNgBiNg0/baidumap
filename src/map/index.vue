@@ -29,24 +29,6 @@
         :stroke-weight="2"
       />
       
-        <!-- <bm-marker
-        :position="{ lng: item.longitude, lat: item.latitude }"
-        v-for="(item, index) in markerArrs"
-        :key="index"
-        @click="infoWindowOpen(item, $event)"
-        :title="item.name"
-        @mouseover="labelShow = index"
-      >
-        <bm-label
-          :content="item.name"
-          :labelStyle="{
-            color: 'red',
-            fontSize: '14px',
-            display: index === labelShow ? 'block' : 'none',
-          }"
-          :offset="{ width: -5, height: 30 }"
-        />
-      </bm-marker> -->
         <my-overlay
           :position="{ lng: item.longitude, lat: item.latitude }"
           v-for="(item, index) in markerArrs"
@@ -102,11 +84,12 @@ import BmPolygon  from 'vue-baidu-map/components/overlays/Polygon.vue'
 import BmLocalSearch from 'vue-baidu-map/components/search/LocalSearch.vue'
 import {BmlMarkerClusterer} from 'vue-baidu-map'
 
-import area from './json/ares.json'
-import firstData from './json/firstData.json'
-import secondData from './json/secondData.json'
-import thirdlyData from './json/thirdData.json'
-import abc from './json/abc.json'
+import country from './json/country.json'
+import province  from './json/province.json'
+import region from './json/region.json'
+import city from './json/city.json'
+import street from './json/street.json'
+import dot from './json/dot.json'
 
 import searchCompanyInput from './searchCompanyInput'
 import searchKeyCon from './searchKeyCon'
@@ -139,21 +122,12 @@ import companyDataPanel from './companyDataPanel';
     },
     data(){
       return{
-        abc,
-        area,
-        firstData,
-        secondData,
-        thirdlyData,
-        /* 点聚合 */
-        /* stylesInMarker:[
-          {
-          url, //图片的url 地址必填
-          size, // size 图片大小 必填项
-          opt_anchor,
-          textColor, 
-          opt_textSize
-           }
-        ], */
+        country,
+        province,
+        region,
+        city,
+        street,
+        dot,
         active: false,
         /* 界限 */
         searchRESULT:[],
@@ -216,6 +190,24 @@ import companyDataPanel from './companyDataPanel';
         ]
       }
     },
+    computed: {
+      markerArrs(){
+        const zoomLevel = this.zoom; //获取地图缩放级别
+          if (zoomLevel <= 6) {
+            return this.country
+          } else if (zoomLevel > 6 && zoomLevel <= 10) {
+            return this.province
+          } else if (zoomLevel > 10 && zoomLevel <= 13) {
+            return this.city
+          } else if (zoomLevel > 13 && zoomLevel <= 15) {
+            return this.region
+          } else if (zoomLevel > 15 && zoomLevel <= 18) {
+            return this.street
+          } else if (zoomLevel > 18) {
+            return this.dot
+          }
+      }
+    },
     watch: {
       tags(val,old){
         if(this.tags.length===0){
@@ -226,13 +218,6 @@ import companyDataPanel from './companyDataPanel';
       }
     },
     methods: {
-      draw ({BMap, map, el, overlay}) {
-       /*  debugger; */
-        console.log(BMap, map, el, overlay)
-      /* const pixel = map.pointToOverlayPixel(new BMap.Point(116.404, 39.915))
-      el.style.left = pixel.x - 60 + 'px'
-      el.style.top = pixel.y - 20 + 'px' */
-    },
       /* 初始化地图 */
       initMap ({BMap, map}) {
           this.center.lng = 116.404;
@@ -390,15 +375,6 @@ import companyDataPanel from './companyDataPanel';
         this.center.lng = lng
         this.center.lat = lat
         this.zoom = e.target.getZoom();
-        const zoomLevel = this.zoom; //获取地图缩放级别
-          console.log(zoomLevel)
-          if (zoomLevel <= 13) {
-            this.addMarker(this.firstData);
-          } else if (zoomLevel > 13 && zoomLevel <= 15) {
-            this.addMarker(this.secondData);
-          } else if (zoomLevel > 15) {
-            this.addMarker(this.thirdlyData)
-          }
       },
       /* 移动 */
       moveEnd(e){
@@ -406,45 +382,23 @@ import companyDataPanel from './companyDataPanel';
         this.center.lng = lng;
         this.center.lat = lat;
         this.zoom = e.target.getZoom();
-        var zoomLevel = this.zoom; //获取地图缩放级别
-        if (zoomLevel > 15) {
-            this.addMarker(this.thirdlyData)
-        }
-      },
-      /* 添加点 */
-      addoverlay(){
-        console.log(12345)
       },
       /* 点击marker事件 */
       infoWindowOpen(data,event){
         // 判断当前zoom
         const zoomLevel = this.zoom; //获取地图缩放级别
-        const lng=data.longitude;
-        const lat=data.latitude ;
+        const lng=data.long;
+        const lat=data.lat;
           if (zoomLevel <= 13) {
-            this.center.lng = lng;
-            this.center.lat = lat;
             this.zoom = 14;
           } else if (zoomLevel > 13 && zoomLevel <= 15) {
-            this.center.lng = lng;
-            this.center.lat = lat;
             this.zoom = 16;
-          } else if (zoomLevel > 15) {
-					    /* var mockEle = document.getElementById('mock');
-            	if (event.clientX < document.documentElement.clientWidth / 2) {
-                mockEle.style.right = "0";
-                mockEle.style.left = "auto";
-              } else {
-                mockEle.style.left = "0";
-                mockEle.style.right = "auto";
-              } */
-              this.mock = true;
-              /* this.filterRESULT = [{name:'这里应该是查询的数据！！！点击项，显示项下所有企业信息。'}]
-              this.drawRESULT = [];
-              this.searchRESULT = []; */
-              const dataToShow = [{lat:data.latitude,lng:data.longitude}]
-              this.showAddressDetail(dataToShow);
+          } else if (zoomLevel > 18) {
+              this.showAddressDetail(data);
+              return 
           }
+          this.center.lng = lng;
+          this.center.lat = lat;
       },
       /* 新增mockery事件 */
       addMarker(data) {
