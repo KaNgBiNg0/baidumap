@@ -3,7 +3,7 @@
     <div class="item">
       <el-dropdown>
         <span class="el-dropdown-link">
-          下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+          行业<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <div class="checkItem">
@@ -24,7 +24,7 @@
     <div class="item">
       <el-dropdown>
         <span class="el-dropdown-link">
-          下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+          规模<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <div class="checkItem">
@@ -45,7 +45,7 @@
     <div class="item">
       <el-dropdown>
         <span class="el-dropdown-link">
-          下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+          指标<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <div class="checkItem">
@@ -148,8 +148,18 @@
     vertical-align: middle;
   }
 
-  .item(3){
+  .item:last-child{
     flex: auto;
+  }
+
+  .el-dropdown {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    color: #606266;
+    font-size: 14px;
+    height: 100%;
+    vertical-align: top;
   }
 } 
 </style>

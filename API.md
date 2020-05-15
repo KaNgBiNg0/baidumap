@@ -4,7 +4,7 @@
     {
     // 可是区域 起始纬度，起始经度，结束纬度，结束经度
      area:[lat1,long1,lat2,long2],   
-     // 层级 国家0，省1，市2，区县3，街道4，点坐标5
+     // 层级 国家country=0，省province=1，市city=2, 区县District=3，街道street=4，点坐标point=5
      level: 0/1/2/3/4/5
     }
     
