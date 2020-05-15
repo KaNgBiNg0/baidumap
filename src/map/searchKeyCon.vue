@@ -141,6 +141,7 @@
   font: 14px/40px "微软雅黑";
   display: flex;
   flex-direction: row;
+  pointer-events: auto;
 
   .item {
     flex: 0 0 87px;

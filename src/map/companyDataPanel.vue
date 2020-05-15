@@ -32,6 +32,7 @@
   }
 
   .companyDataPanel {
+    pointer-events: auto;
     position: absolute;
     top:0px;
     right: 0px;
