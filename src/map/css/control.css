@@ -1,0 +1,31 @@
+.control_k{
+  position: absolute;
+  right: 36px;
+  bottom: 50px;
+  /* left: 36px;
+  top: 50px */;
+  width: 32px;
+  height: 60px;
+  border-radius: 5px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  z-index: 3;
+  overflow: hidden;
+  border: 1px solid rgb(182, 174, 174);
+}
+.control_k button{
+  border: none;
+  width: 32px;
+  height: 50%;
+  background-color: #fff;
+  
+}
+.control_k button i{
+  font-weight: 800;
+}
+.control_k button:focus {
+  outline: none;
+}
+.control_k .add_k{
+  border-bottom: 1px solid #eee;
+}
