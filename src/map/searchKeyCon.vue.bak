@@ -1,5 +1,10 @@
 <template>
-  <div class="searchKeyCon">
+  <div style="display:flex" class="con">
+    <div style="padding: 5px 0;margin-right:5px;border-left:1px solid #eee">
+        <el-input placeholder="请输入内容" v-model="formInline.address" class="input-with-select" >
+          <i slot="suffix" class="el-input__icon el-icon-search" @click="searchByStationName"></i>
+        </el-input>
+    </div>
     <div class="item">
       <el-dropdown>
         <span class="el-dropdown-link">
@@ -56,11 +61,6 @@
           </div>
         </el-dropdown-menu>
       </el-dropdown>
-    </div>
-    <div class="item">
-        <span class="">
-          <i class="el-icon-arrow-down el-icon--right"></i>画圈找企业
-        </span>
     </div>
   </div>
 </template>
@@ -128,31 +128,6 @@
   }
 
 </script>
-
-<style  lang='less'>
-.searchKeyCon{
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  height: 40px;
-  width : 377px;
-  background: #fff;
-  color:#333;
-  font: 14px/40px "微软雅黑";
-  display: flex;
-  flex-direction: row;
-
-  .item {
-    flex: 0 0 87px;
-    text-align: center;
-    vertical-align: middle;
-  }
-
-  .item(3){
-    flex: auto;
-  }
-} 
-</style>
 
 <style  lang='stylus'>
 .con

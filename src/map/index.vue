@@ -1,55 +1,6 @@
 <template>
-  <div id="Map_search">
-    <!-- <div class="mock" id="mock" style=" z-index: 2;" v-show="mock">
-      <div style="padding: 5px 0;border-bottom:1px solid #eee">
-        <el-input placeholder="请输入内容" v-model="mockKeyWord" class="input-with-select" >
-          <i slot="suffix" class="el-input__icon el-icon-search" @click="filterByName"></i>
-        </el-input>
-      </div>
-      <div class="mockBottom" id="mockBottom">
-        <div v-if="searchRESULT" v-for="(item,index) in searchRESULT" :key="index" class="itemBottom">
-          {{index+1}}. {{item.title}}
-        </div>
-        <div v-if="drawRESULT" v-for="(item,index) in drawRESULT" :key="index" class="itemBottom">
-          {{index+1}}. {{item.name}}
-        </div>
-        <div v-if="filterRESULT" v-for="(item,index) in filterRESULT" :key="index" class="itemBottom">
-          {{index+1}}. {{item.name}}
-        </div>
-      </div>
-      <div class="mockLeft" @click="mock = false">
-        <img src="./img/left.png" alt="" srcset="" />
-      </div>
-      <div class="mockRight" @click="mock = false">
-        <img src="./img/right.png" alt="" srcset="" />
-      </div>
-    </div>
-    <div class="header">
-      <showKeys class="showKeys" v-if="!mock" v-show="tagsShow" :tags="tags"></showKeys>
-      <searchKeyCon class="searchKeyCon" :formInline="formInline" :searchByStationName="searchByStationName" :addtags="addtags" :removetags="removetags">
-
-      </searchKeyCon>
-      <button
-        class="drawing"
-        id="draw"
-        @click.prevent.stop="drawing()"
-        v-show="!isInDrawing"
-      >
-        画圈找企业
-      </button>
-      <button
-        class="exit"
-        id="exit"
-        @click.prevent.stop="nodrawering()"
-        v-show="isInDrawing"
-      >
-        退出画圈找企业
-      </button>
-    </div> -->
-    <div class="tagsCheckedAndDraw">
-      12345
-    </div>
-    <searchCompanyInput></searchCompanyInput>
+  <div id="Map_search" class="width15">
+    
     <baidu-map
       class="bm-view"
       ak="gs9pxTGgbgUBhK9d6nmv8U6jnUyVx9Y4"
@@ -96,6 +47,39 @@
         :stroke-weight="2"
       />
     </baidu-map>
+  
+    <div id="mapTools">
+
+      <div class="topBlank"></div>
+    
+      <div class="center">
+      
+        <div class="leftBlank"></div>
+
+        <div class="content">
+          
+          <!-- 搜索框 -->
+          <searchCompanyInput></searchCompanyInput>
+
+          <!-- 过滤器 -->
+          <searchKeyCon></searchKeyCon>
+
+          <!-- 候选单位列表 -->
+          <companyListPanel></companyListPanel>
+
+          <!-- 数据结果列表 -->
+          <companyDataPanel></companyDataPanel>
+        
+        </div>
+
+        <div class="rightBlank"></div>
+
+      </div>
+      
+      <div class="bottomBlank"></div>
+
+    </div>
+
   </div>
 </template>
 
@@ -117,6 +101,13 @@ import searchCompanyInput from './searchCompanyInput'
 import searchKeyCon from './searchKeyCon'
 import showKeys from './showKeys'
 
+// 候选公司列表
+import companyListPanel from './companyListPanel';
+// 查询结果
+import companyDataPanel from './companyDataPanel';
+
+
+
   export default {
     components: {
       BaiduMap,
@@ -127,8 +118,10 @@ import showKeys from './showKeys'
       BmPolygon,
       
       searchCompanyInput,
-      showKeys,
-      searchKeyCon
+      searchKeyCon,
+
+      companyListPanel,
+      companyDataPanel
     },
     data(){
       return{
@@ -512,23 +505,6 @@ import showKeys from './showKeys'
 
 <style scoped>
 @import "./css/style.css";
-#Map_search{
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-.bm-view{
-  width: 100%;
-  height: 100%;
-}
-.tagsCheckedAndDraw{
-  position: absolute;
-  left: 1185px;
-  top: 100px;
-  width:375px;
-  height: 40px;
-  background-color: blue;
-  z-index: 2;
-}
+@import "./css/index.css";
   
 </style>
