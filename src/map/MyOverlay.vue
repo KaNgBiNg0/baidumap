@@ -10,7 +10,7 @@
       class="content"
       v-show="sample"
     >
-      <p>{{companyData.name}}</p>
+      <p>{{companyData.text}}</p>
       <p>共{{companyData.count}}企业</p>
     </div>
     <span v-show="sample2" @click="infoWindowOpen(companyData, $event)">{{companyData.count}}</span>
@@ -41,13 +41,10 @@ export default {
   },
   methods: {
     draw ({el, BMap, map}) {
-     /*  const zoom  = map.getZoomed(); */
-      const zoomLevel = map.getZoom();
+    const zoomLevel = map.getZoom();
     if (zoomLevel <= 13) {
           this.sample = true;
-    } else if (zoomLevel > 13 && zoomLevel <= 15) {
-          this.sample2 = true;
-    } else if (zoomLevel > 15) {
+    } else if (zoomLevel > 13) {
           this.sample2 = true;
     }
       const {lng, lat} = this.position
