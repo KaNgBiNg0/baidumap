@@ -8,14 +8,13 @@
 <script type="text/ecmascript-6">
 
   export default {
-    props:["isShowCompanyData"],
+    props:["list"],
     data(){return {
-       
+       isShowCompanyData: true
     }},
-    method:{
+    methods:{
       close(){
         this.isShowCompanyData = false;
-        alert("closed!")
       }
     }
   }
@@ -32,10 +31,12 @@
   }
 
   .companyDataPanel {
+    pointer-events: auto;
     position: absolute;
     top:0px;
     right: 0px;
     height: 100%;
+    background-color: #ffffff;
 
     .companyDataIframe {
       width: 100%;
@@ -49,7 +50,7 @@
       top: -12px;
       width: 24px;
       height: 24px;
-      background-color: #ff0000;
+      background: url(./img/img.png) no-repeat -318px -35px;
       z-index: 2;
     }
   }
