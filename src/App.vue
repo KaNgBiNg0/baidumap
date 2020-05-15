@@ -15,9 +15,11 @@ export default {
 }
 </script>
 
-<style lang="stylus" ref="stylesheet/stylus" >
+<style lang="less" ref="stylesheet/less" >
 #app{
-  width 1920px
-  height 1080px
+  // width: 100%;
+  // height: 100%;
+  width: 1920px;
+  height: 1080px;
 }
 </style>
