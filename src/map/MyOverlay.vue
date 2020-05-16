@@ -7,7 +7,7 @@
     <div  @click="infoWindowOpen(companyData, $event)"
       @mouseover="active=true"
       @mouseout="active=false"
-      class="content"
+      class="content_kang"
       v-show="sample"
     >
       <p>{{companyData.text}}</p>
@@ -42,10 +42,12 @@ export default {
   methods: {
     draw ({el, BMap, map}) {
     const zoomLevel = map.getZoom();
-    if (zoomLevel <= 13) {
+    if (zoomLevel <= 18) {
           this.sample = true;
-    } else if (zoomLevel > 13) {
+          this.sample2 = false;
+    } else if (zoomLevel > 18) {
           this.sample2 = true;
+          this.sample = false;
     }
       const {lng, lat} = this.position
       const pixel = map.pointToOverlayPixel(new BMap.Point(lng, lat))
@@ -89,7 +91,7 @@ export default {
 .sample2 span{
   font-weight: 700;
 }
-.content{
+.content_kang{
   margin-top: 16px;
   padding:  0 6px;
   p{

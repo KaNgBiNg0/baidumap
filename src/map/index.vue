@@ -15,7 +15,14 @@
       :double-click-zoom="!isInDrawing"
       :keyboard="!isInDrawing"
       :min-zoom=5
+      :map-click="false"
     >
+        <div class="control_k">
+            <button @click="zoom++" class="add_k">
+              <i class="el-icon-plus"></i>
+            </button>
+            <button @click="zoom--"><i class="el-icon-minus"></i></button>
+        </div>
       <bm-local-search
         :keyword="searchkeyword"
         :auto-viewport="true"
@@ -30,7 +37,7 @@
       />
       
         <my-overlay
-          :position="{ lng: item.longitude, lat: item.latitude }"
+          :position="{ lng: item.long, lat: item.lat}"
           v-for="(item, index) in markerArrs"
           :key="index"
           :companyData="item"
@@ -39,7 +46,7 @@
         </my-overlay>
     </baidu-map>
   
-    <div id="mapTools" class="disable">
+    <div id="mapTools" class="disable" >
 
       <div class="topBlank"></div>
     
@@ -54,7 +61,7 @@
 
           <!-- 过滤器 -->
           <searchKeyCon :addtags="addtags" :removetags="removetags" :drawing="drawing" :isInDrawing="isInDrawing" :nodrawering="nodrawering"></searchKeyCon>
-queryData
+
           <!-- 候选单位列表 -->
           <companyListPanel :list="polyPointArray" :queryData="queryData"></companyListPanel>
 
@@ -80,7 +87,7 @@ import BmLabel from 'vue-baidu-map/components/overlays/Label.vue'
 import BmMarker from 'vue-baidu-map/components/overlays/Marker.vue'
 import BmPolyline  from 'vue-baidu-map/components/overlays/Polyline.vue'
 import BmPolygon  from 'vue-baidu-map/components/overlays/Polygon.vue'
-/* import BmOverlay  from 'vue-baidu-map/components/overlays/Overlay.vue' */
+import BmControl  from 'vue-baidu-map/components/controls/Control.vue'
 import BmLocalSearch from 'vue-baidu-map/components/search/LocalSearch.vue'
 import {BmlMarkerClusterer} from 'vue-baidu-map'
 
@@ -112,6 +119,7 @@ import companyDataPanel from './companyDataPanel';
       BmPolyline,
       BmPolygon,
       BmlMarkerClusterer,
+      BmControl,
 
       MyOverlay,
       searchCompanyInput,
@@ -163,11 +171,6 @@ import companyDataPanel from './companyDataPanel';
         map:null,
         center: {lng: 116.404, lat: 39.915},
         zoom: 13,
-        markerArrs:[{
-          longitude: "116.305434",
-          latitude: "39.96549",
-          name:'海淀区'
-        }],
         flag:true,//是否是第一集
         adds:[], //浮层显示数组
         addindex:0,
@@ -207,6 +210,13 @@ import companyDataPanel from './companyDataPanel';
             return this.street
           } else if (zoomLevel > 18) {
             return this.dot
+          } else{
+            return [{
+              text:'暂无数据',
+              long: "116.305434",
+              lat: "39.96549",
+              count: "0"
+            }]
           }
       }
     },
@@ -391,13 +401,19 @@ import companyDataPanel from './companyDataPanel';
         const zoomLevel = this.zoom; //获取地图缩放级别
         const lng=data.long;
         const lat=data.lat;
-          if (zoomLevel <= 13) {
+        if (zoomLevel <= 6) {
+            this.zoom = 7;
+          } else if (zoomLevel > 6 && zoomLevel <= 10) {
+            this.zoom = 11;
+          } else if (zoomLevel > 10 && zoomLevel <= 13) {
             this.zoom = 14;
           } else if (zoomLevel > 13 && zoomLevel <= 15) {
-            this.zoom = 16;
+           this.zoom = 16;
+          } else if (zoomLevel > 15 && zoomLevel <= 18) {
+            this.zoom = 19;
           } else if (zoomLevel > 18) {
-              this.showAddressDetail(data);
-              return 
+            this.showAddressDetail(data);
+              return
           }
           this.center.lng = lng;
           this.center.lat = lat;
@@ -429,62 +445,9 @@ import companyDataPanel from './companyDataPanel';
         }
         
       },
-      /* 显示浮层的信息 目前好像没啥用 */
+      /* 显示浮层的信息 to 永生 */
       showAddressDetail(data){
-        let adds=[];
-        for (let index = 0; index < data.length; index++) {
-          let elementpt = data[index];
-          adds.push(elementpt)
-        }
-        this.adds = adds;
-        this.addindex = 0;
-        this.bdGEO(0);
-      },
-      bdGEO() {
-        var pt = this.adds[this.addindex];
-        //geocodeSearch(pt);
-        this.addindex++;
-      },
-      geocodeSearch(pt) {
-        if (index < adds.length - 1) {
-          setTimeout(window.bdGEO, 400);
-        }
-		    myGeo.getLocation(pt, function (rs) {
-          var addComp = rs.addressComponents;
-          var item =  "商圈:" + rs.business +
-            " </br> 地址：" + addComp.province  + addComp.city  + addComp.district  + addComp.street +
-            addComp.streetNumber + "";
-          console.log(item)
-          if(adds.length === 1){
-            console.log('title')
-            var comAddress = document.getElementById('comAddress')
-            comAddress.innerHTML = item;
-              /* 通过其查找 企业 */
-          const dataAll = [
-                {
-                  lng:116.313082,lat:40.047674
-                },
-                {
-                  lng:116.328749,lat:40.026922
-                },
-                {
-                  lng:116.347571,lat:39.988698
-                },
-                {
-                  lng:116.316163,lat:39.998333
-                },
-                {
-                  lng:116.313076,lat:40.059011
-                },
-              ]
-              var mockBottom = document.getElementById('mockBottom')
-              mockBottom.innerHTML ='';
-                showAddressDetail(dataAll);
-
-          }else{
-            createEle(item)
-          }
-        });
+        
       },
       queryData(){ 
         console.log("queryData");
@@ -492,7 +455,7 @@ import companyDataPanel from './companyDataPanel';
       },
       closeCompanyDataPanel(){
         this.isShowCompanyData = false;
-      }
+      },
 
     }
   }
@@ -501,21 +464,6 @@ import companyDataPanel from './companyDataPanel';
 <style scoped>
 @import "./css/style.css";
 @import "./css/index.css";
-/* .sample {
-  width: 20px;
-  height: 10px;
-  line-height: 10px;
-  background: rgba(0,0,0,0.5);
-  overflow: hidden;
-  box-shadow: 0 0 2px #000;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  position: absolute;
-}
-.sample.active {
-  background: rgba(0,0,0,0.75);
-  color: #fff;
-} */
-  
+@import "./css/control.css"
+
 </style>
