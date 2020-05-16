@@ -27,7 +27,7 @@
       <!-- pager-count应该是大于等于5 但是设置5以后宽度溢出 就先改成3 提示waring可以先无视 -->
       <el-pagination class="pagination" background 
 			layout="prev, pager, next"
-      pager-count="3"
+      :pager-count="3"
       current-page.sync="index"
 			:page-sizes="[10,20,50,100]" 
 			:page-size="10"

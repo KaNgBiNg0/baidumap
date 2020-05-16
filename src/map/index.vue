@@ -1,7 +1,7 @@
 <template>
   <div id="Map_search" class="width15">
-    <button @click="drawing()">花圈了</button>
-    <button @click="nodrawering()">别花圈了</button>
+   <!--  <button @click="drawing()">花圈了</button>
+    <button @click="nodrawering()">别花圈了</button> -->
     <baidu-map
       class="bm-view"
       ak="gs9pxTGgbgUBhK9d6nmv8U6jnUyVx9Y4"
@@ -183,7 +183,6 @@ import companyDataPanel from './companyDataPanel';
         adds:[], //浮层显示数组
         addindex:0,
         mock:false,
-
         /* tags */
         tagsShow:false,
         tags: [
@@ -204,13 +203,13 @@ import companyDataPanel from './companyDataPanel';
       }
     },
     watch: {
-      /* tags(val,old){
+      tags(val,old){
         if(this.tags.length===0){
           this.tagsShow = false;
         }else{
           this.tagsShow = true;
         }
-      } */
+      }
     },
     methods: {
       /* 初始化地图 */
@@ -221,7 +220,7 @@ import companyDataPanel from './companyDataPanel';
           if(map){this.map = map;}
       },
       /* tags */
-      /* addtags(index){
+      addtags(index){
         this.tags.push(this.allTags[index-1])
       },
       removetags(index){
@@ -230,7 +229,7 @@ import companyDataPanel from './companyDataPanel';
           return value.name !== allTags[index-1].name
           })
         this.tags=tags;
-      }, */
+      },
       /* 初始化画图 */
       drawing(){
         this.isInDrawing = true;
