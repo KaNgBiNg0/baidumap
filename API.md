@@ -58,7 +58,6 @@
 
 1. 获得右侧筛选条件（行业，规模，指标）的接口？？？
 
-
 ---
 
 # 组件
@@ -87,9 +86,19 @@ v-show => isInDrawing // 切换文本
 
 ## 候选单位基本信息组件 conpanyListPanel 
 
-prop => // 待查询单位列表
+prop => list(polyPointArray) querData
+
+list // 展示数据使用，判断是否展示该组件
+
+@click => querData // 查询数据（拼接iframe）
 
 ## 单位数据信息组件 conpanyDataPanel 
 
-prop => // 待查询单位列表
+prop => list(polyPointArray) isShowCompanyData closeCompanyDataPanel
+
+list // 展示数据使用
+
+v-show => isShowCompanyData // 是否展示该组件
+
+@click => closeCompanyDataPanel // 通知vue已经关闭该组件
 
