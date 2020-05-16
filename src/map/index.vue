@@ -1,6 +1,7 @@
 <template>
   <div id="Map_search" class="width15">
-    
+    <button @click="drawing()">花圈了</button>
+    <button @click="nodrawering()">别花圈了</button>
     <baidu-map
       class="bm-view"
       ak="gs9pxTGgbgUBhK9d6nmv8U6jnUyVx9Y4"
@@ -23,6 +24,7 @@
             </button>
             <button @click="zoom--"><i class="el-icon-minus"></i></button>
         </div>
+      
       <bm-local-search
         :keyword="searchkeyword"
         :auto-viewport="true"
@@ -136,8 +138,16 @@ import companyDataPanel from './companyDataPanel';
         city,
         street,
         dot,
-        active: false,
+        markerArrs:[{
+          text:'暂无数据',
+          long: "116.305434",
+          lat: "39.96549",
+          count: "0"
+        }],
+        /* 浮层的显示结果 */
+        addressReasult : [],
         /* 界限 */
+        active: false,
         searchRESULT:[],
         filterRESULT:[],
         drawRESULT:[],
@@ -163,8 +173,6 @@ import companyDataPanel from './companyDataPanel';
         lastPolyLine : null,
         //画圈完成后生成的多边形
         polygonAfterDraw : [],
-        /* 浮层的显示结果 */
-        addressReasult : [],
         /* 初始化 */
         map:null,
         center: {lng: 116.404, lat: 39.915},
@@ -193,39 +201,14 @@ import companyDataPanel from './companyDataPanel';
         ]
       }
     },
-    computed: {
-      markerArrs(){
-        const zoomLevel = this.zoom; //获取地图缩放级别
-          if (zoomLevel <= 6) {
-            return this.country
-          } else if (zoomLevel > 6 && zoomLevel <= 10) {
-            return this.province
-          } else if (zoomLevel > 10 && zoomLevel <= 13) {
-            return this.city
-          } else if (zoomLevel > 13 && zoomLevel <= 15) {
-            return this.region
-          } else if (zoomLevel > 15 && zoomLevel <= 18) {
-            return this.street
-          } else if (zoomLevel > 18) {
-            return this.dot
-          } else{
-            return [{
-              text:'暂无数据',
-              long: "116.305434",
-              lat: "39.96549",
-              count: "0"
-            }]
-          }
-      }
-    },
     watch: {
-      tags(val,old){
+      /* tags(val,old){
         if(this.tags.length===0){
           this.tagsShow = false;
         }else{
           this.tagsShow = true;
         }
-      }
+      } */
     },
     methods: {
       /* 初始化地图 */
@@ -236,7 +219,7 @@ import companyDataPanel from './companyDataPanel';
           if(map){this.map = map;}
       },
       /* tags */
-      addtags(index){
+      /* addtags(index){
         this.tags.push(this.allTags[index-1])
       },
       removetags(index){
@@ -245,29 +228,29 @@ import companyDataPanel from './companyDataPanel';
           return value.name !== allTags[index-1].name
           })
         this.tags=tags;
-      },
+      }, */
       /* 初始化画图 */
       drawing(){
         this.isInDrawing = true;
-        if(this.zoom <= 12){
-            alert("请放大到三级数据进行画图找房");
+        if(this.zoom <= 15){
+            alert("请放大进行");
             this.isInDrawing = false;
         }else{
-          this.map.clearOverlays()
+          this.map.clearOverlays();
+          this.markerArrs = [];
+         /* 有问题 */
           this.map.setDefaultCursor('crosshair');
           this.map.addEventListener('mousedown',  (e)=> {
             //如果处于画圈状态下,清空上次画圈的数据结构,设置isMouseDown进入画圈鼠标按下状态
-
             if(this.isInDrawing){
               this.polyPointArray=[];
               this.isMouseDown = true;
-              this.mock= false;
-              console.log('jinlaile')
+              this.markerArrs = [];
               try {
-              this.map.clearOverlays();
-                } catch (error) {
+                this.map.clearOverlays();
+              } catch (error) {
 
-                }
+              }
             }
 
           });
@@ -286,7 +269,6 @@ import companyDataPanel from './companyDataPanel';
             this.map.addOverlay(polygon);
             //包含情况
             this.show(polygon);
-
             }
           });
         }
@@ -300,7 +282,11 @@ import companyDataPanel from './companyDataPanel';
         this.isInDrawing = false;
         this.map.setDefaultCursor('default');
         this.map.clearOverlays();
-        this.addMarker(this.thirdlyData)
+        const markerArrs = this.zoomLevel();
+        this.markerArrs = markerArrs;
+        console.log(this.drawRESULT)
+        this.drawRESULT = [];
+        console.log(this.drawRESULT)
       },
       updatePolygonPath(e){
         this.polygon = e.target;
@@ -315,23 +301,20 @@ import companyDataPanel from './companyDataPanel';
           //在多边形内的点的数组
           let  pointInPolygonArray = [];
           //计算每个点是否包含在该多边形内
-          let keys = Object.keys(this.thirdlyData)
-          for (var i = 0; i < keys.length; i++) {
+          let keys = Object.keys(this.dot)
+          for (var i = 0; i < this.dot.length; i++) {
             //该marker的坐标点
-            let name = keys[i];
-            let {longitude,latitude} = this.thirdlyData[name];
-            var marker = new BMap.Marker(new BMap.Point(longitude,latitude)); // 创建点
+            let element  = this.dot[i];
+            let {long,lat} = element;
+            var marker = new BMap.Marker(new BMap.Point(long,lat)); // 创建点
 	          let markerPoint = marker.getPosition();
             if (this.isPointInPolygon(markerPoint, bound, pointArray)) {
-              pointInPolygonArray.push(this.thirdlyData[name])
+              pointInPolygonArray.push(this.dot[i])
             }
           }
           if(pointInPolygonArray.length!==0){
             this.markerArrs = pointInPolygonArray;
-            this.searchRESULT = [];
-            this.filterRESULT = [];
             this.drawRESULT = pointInPolygonArray;
-            this.mock = true;
           }
           
       },
@@ -385,6 +368,31 @@ import companyDataPanel from './companyDataPanel';
         this.center.lng = lng
         this.center.lat = lat
         this.zoom = e.target.getZoom();
+        const markerArrs = this.zoomLevel();
+        this.markerArrs = markerArrs;
+      },
+      zoomLevel(){
+        const zoomLevel = this.zoom; //获取地图缩放级别
+          if (zoomLevel <= 6) {
+            return this.country
+          } else if (zoomLevel > 6 && zoomLevel <= 10) {
+            return this.province
+          } else if (zoomLevel > 10 && zoomLevel <= 13) {
+            return this.city
+          } else if (zoomLevel > 13 && zoomLevel <= 15) {
+            return this.region
+          } else if (zoomLevel > 15 && zoomLevel <= 18) {
+            return this.street
+          } else if (zoomLevel > 18) {
+            return this.dot
+          } else{
+            return [{
+              text:'暂无数据',
+              long: "116.305434",
+              lat: "39.96549",
+              count: "0"
+            }]
+          }
       },
       /* 移动 */
       moveEnd(e){
@@ -410,20 +418,25 @@ import companyDataPanel from './companyDataPanel';
           } else if (zoomLevel > 15 && zoomLevel <= 18) {
             this.zoom = 19;
           } else if (zoomLevel > 18) {
-            this.showAddressDetail(data);
+              this.drawRESULT = [
+                data,
+              ]
+              console.log(this.drawRESULT)
               return
           }
           this.center.lng = lng;
           this.center.lat = lat;
+          const markerArrs = this.zoomLevel();
+          this.markerArrs = markerArrs;
       },
       /* 新增mockery事件 */
-      addMarker(data) {
+      /* addMarker(data) {
         this.markerArrs = data;
-      },
+      }, */
       /* 加载第三级数据 */
-      addLable(data) {
+      /* addLable(data) {
 
-      },
+      }, */
       /* 查询结构 */
       searchByStationName(){
         this.searchkeyword = this.formInline.address;
@@ -443,10 +456,7 @@ import companyDataPanel from './companyDataPanel';
         }
         
       },
-      /* 显示浮层的信息 to 永生 */
-      showAddressDetail(data){
-        
-      },
+      
     
     },
   }

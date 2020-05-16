@@ -3,6 +3,7 @@
     ref="customOverlay"
     :class="{sample,active,sample2}"
     pane="labelPane"
+    :massClear="true"
     @draw="draw">
     <div  @click="infoWindowOpen(companyData, $event)"
       @mouseover="active=true"
