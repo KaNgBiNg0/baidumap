@@ -1,7 +1,7 @@
 <template>
   <div class="companyListPanel" v-show="list.length>0">
     <div class="tilte">
-      <span class="big">企业名称</span><span>共找到</span><span class="number" v-text="list.length"></span><span>家企业</span>
+      <span class="big">企业名称</span><span>共找到</span><span class="number" v-text="53"></span><span>家企业</span>
       <button class="btn" @click.stop="queryData">数据查询</button>
     </div>
     <div class="list">
@@ -31,7 +31,7 @@
       current-page.sync="index"
 			:page-sizes="[10,20,50,100]" 
 			:page-size="10"
-			:total="list.length"
+			:total="53"
 			@current-change="handleCurrentChange"  
 			@size-change="handleSizeChange" 
 			>
@@ -45,80 +45,80 @@
     props:["list", "queryData"],
     data(){return {
        showList: [{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
@@ -137,80 +137,80 @@
       list(){
         // 数据请求
         this.showList = [{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
        },{
-          "name":"长安福特有限责热公司",
-          "businessType":"新能源企业",
+          "name":"长城计算机软件与系统有限公司",
+          "businessType":"互联网开发企业",
           "staffs": "300",
           "companyType":"国企",
           "address":"北京市海淀区中关村",

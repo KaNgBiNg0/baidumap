@@ -1,7 +1,5 @@
 <template>
-  <div id="Map_search" class="width15">
-   <!--  <button @click="drawing()">花圈了</button>
-    <button @click="nodrawering()">别花圈了</button> -->
+  <div id="Map_search" class="width12" :class="isShowCompanyData ? 'dataShowing' : ''">
     <baidu-map
       class="bm-view"
       ak="gs9pxTGgbgUBhK9d6nmv8U6jnUyVx9Y4"
@@ -48,6 +46,8 @@
         </my-overlay>
     </baidu-map>
   
+    <div id="bg"></div>
+
     <div id="mapTools" class="disable" >
 
       <div class="topBlank"></div>

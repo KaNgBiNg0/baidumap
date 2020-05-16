@@ -41,6 +41,7 @@
     right: 0px;
     height: 100%;
     background-color: #ffffff;
+    z-index: 3;
 
     .companyDataIframe {
       width: 100%;

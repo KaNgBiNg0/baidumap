@@ -4,6 +4,21 @@
     position: relative;
 }
 
+#bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.dataShowing #bg {
+    opacity: 0.6;
+    background: #000;
+    pointer-events: auto;
+}
+
 #mapTools {
     position: absolute;
     top: 0px;
