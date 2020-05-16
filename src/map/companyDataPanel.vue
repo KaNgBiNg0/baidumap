@@ -1,22 +1,25 @@
 <template>
   <div class="companyDataPanel" v-show="isShowCompanyData" >
     <iframe class="companyDataIframe" src="http://test.gofusion.cn/dataquery/page/indicator/indicator.jsp?funcId=240792bd64114c43ada687ca5f04c1b6"></iframe>
-    <img class="close" @click.stop="close"/>
+    <img class="close" @click.stop="closeCompanyDataPanel"/>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 
   export default {
-    props:["isShowCompanyData"],
+    props:["list", "isShowCompanyData", "closeCompanyDataPanel"],
     data(){return {
-       
     }},
-    method:{
-      close(){
-        this.isShowCompanyData = false;
-        alert("closed!")
-      }
+    methods:{
+    },
+    watch:{
+       isShowCompanyData(val){
+        console.log(`isShowCompanyData ===> ${val}`);
+        if(val) {
+          // 根据list拼接iframe
+        } 
+       }
     }
   }
 </script>
@@ -32,10 +35,12 @@
   }
 
   .companyDataPanel {
+    pointer-events: auto;
     position: absolute;
     top:0px;
     right: 0px;
     height: 100%;
+    background-color: #ffffff;
 
     .companyDataIframe {
       width: 100%;
@@ -49,8 +54,9 @@
       top: -12px;
       width: 24px;
       height: 24px;
-      background-color: #ff0000;
+      background: url(./img/icon.png) no-repeat -318px -35px;
       z-index: 2;
+      border-radius: 12px;
     }
   }
 

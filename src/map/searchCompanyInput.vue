@@ -1,21 +1,19 @@
 <template>
   <div id="searchCompanyInput">
-    <input type="text" placeholder="输入企业或区域开始寻找">
-    <input type="button" value="查询" @click.stop="search">
+    <input type="text" placeholder="输入企业或区域开始寻找" v-model="formInline.address">
+    <input type="button" value="查询" @click.stop="searchByStationName">
     <!-- <div class="searchResult" v-show="true"></div> -->
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   export default {
-    props:['lags','longs','zoom'],
+    props:['formInline', 'searchByStationName'],
     data(){
       return{
-        inSearch:false,
       }
     },
     method:{
-      search(){}
     }
   }
 </script>
@@ -32,6 +30,7 @@
   line-height: 40px;
   box-sizing: content-box;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
 
   input[type=text] {
     text-align: left;

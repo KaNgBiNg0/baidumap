@@ -59,16 +59,16 @@
         <div class="content">
           
           <!-- 搜索框 -->
-          <searchCompanyInput></searchCompanyInput>
+          <searchCompanyInput :formInline="formInline" :searchByStationName="searchByStationName"></searchCompanyInput>
 
           <!-- 过滤器 -->
-          <searchKeyCon></searchKeyCon>
+          <searchKeyCon :addtags="addtags" :removetags="removetags" :drawing="drawing" :isInDrawing="isInDrawing" :nodrawering="nodrawering"></searchKeyCon>
 
           <!-- 候选单位列表 -->
-          <companyListPanel></companyListPanel>
+          <companyListPanel :list="drawRESULT" :queryData="queryData"></companyListPanel>
 
-          <!-- 数据结果列表 -->
-          <companyDataPanel></companyDataPanel>
+          <!-- 数据结果列表 -->i
+          <companyDataPanel :list="drawRESULT" :isShowCompanyData="isShowCompanyData" :closeCompanyDataPanel="closeCompanyDataPanel"></companyDataPanel>
         
         </div>
 
@@ -144,8 +144,6 @@ import companyDataPanel from './companyDataPanel';
           lat: "39.96549",
           count: "0"
         }],
-        /* 浮层的显示结果 */
-        addressReasult : [],
         /* 界限 */
         active: false,
         searchRESULT:[],
@@ -173,6 +171,10 @@ import companyDataPanel from './companyDataPanel';
         lastPolyLine : null,
         //画圈完成后生成的多边形
         polygonAfterDraw : [],
+        /* 浮层的显示结果 */
+        addressReasult : [],
+        // 是否显示查询数据结果
+        isShowCompanyData: false,
         /* 初始化 */
         map:null,
         center: {lng: 116.404, lat: 39.915},
@@ -456,9 +458,19 @@ import companyDataPanel from './companyDataPanel';
         }
         
       },
-      
-    
-    },
+      /* 显示浮层的信息 to 永生 */
+      showAddressDetail(data){
+        
+      },
+      queryData(){ 
+        console.log("queryData");
+        this.isShowCompanyData = true;
+      },
+      closeCompanyDataPanel(){
+        this.isShowCompanyData = false;
+      },
+
+    }
   }
 </script>
 
