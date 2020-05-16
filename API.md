@@ -86,7 +86,7 @@ v-show => isInDrawing // 切换文本
 
 ## 候选单位基本信息组件 conpanyListPanel 
 
-prop => list(polyPointArray) querData
+prop => list(polyPointArray =changeTo=> drawRESULT) querData
 
 list // 展示数据使用，判断是否展示该组件
 
@@ -94,7 +94,7 @@ list // 展示数据使用，判断是否展示该组件
 
 ## 单位数据信息组件 conpanyDataPanel 
 
-prop => list(polyPointArray) isShowCompanyData closeCompanyDataPanel
+prop => list(polyPointArray =changeTo=> drawRESULT) isShowCompanyData closeCompanyDataPanel
 
 list // 展示数据使用
 

@@ -63,10 +63,10 @@
           <searchKeyCon :addtags="addtags" :removetags="removetags" :drawing="drawing" :isInDrawing="isInDrawing" :nodrawering="nodrawering"></searchKeyCon>
 
           <!-- 候选单位列表 -->
-          <companyListPanel :list="polyPointArray" :queryData="queryData"></companyListPanel>
+          <companyListPanel :list="drawRESULT" :queryData="queryData"></companyListPanel>
 
           <!-- 数据结果列表 -->i
-          <companyDataPanel :list="polyPointArray" :isShowCompanyData="isShowCompanyData" :closeCompanyDataPanel="closeCompanyDataPanel"></companyDataPanel>
+          <companyDataPanel :list="drawRESULT" :isShowCompanyData="isShowCompanyData" :closeCompanyDataPanel="closeCompanyDataPanel"></companyDataPanel>
         
         </div>
 
