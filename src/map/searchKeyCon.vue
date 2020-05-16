@@ -57,9 +57,14 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
-    <div class="item">
-        <span class="">
-          <i class="el-icon-arrow-down el-icon--right"></i>画圈找企业
+    <div class="item drawBtn" v-show="!isInDrawing" @click="drawing">
+        <span>
+          <i class="drawIcon"></i>画圈找企业
+        </span>
+    </div>
+    <div class="item drawBtn" v-show="isInDrawing" @click="nodrawering">
+        <span>
+          <i class="drawingIcon"></i>退出画圈找企业
         </span>
     </div>
   </div>
@@ -67,7 +72,7 @@
 
 <script type="text/ecmascript-6">
   export default {
-    props:['formInline','searchByStationName',"addtags","removetags"],
+    props:["addtags","removetags", "drawing" , "isInDrawing", "nodrawering"],
     data() {
       return {
         checked1:false,
@@ -144,12 +149,12 @@
   pointer-events: auto;
 
   .item {
-    flex: 0 0 87px;
+    flex: 0 0 80px;
     text-align: center;
     vertical-align: middle;
   }
 
-  .item:last-child{
+  .drawBtn{
     flex: auto;
   }
 
@@ -161,6 +166,20 @@
     font-size: 14px;
     height: 100%;
     vertical-align: top;
+  }
+
+  .drawIcon {
+    width:19px;
+    height:19px;
+    display: inline-block;
+    background: url(./img/icon.png) no-repeat -204px 0px;
+  }
+      
+  .drawingIcon {
+    width:19px;
+    height:19px;
+    display: inline-block;
+    background: url(./img/icon.png) no-repeat -245px 0px;
   }
 } 
 </style>

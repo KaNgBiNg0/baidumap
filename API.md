@@ -24,7 +24,7 @@
         "count": "数量",
         
         // 新增的
-        "data":["组织机构代码1","组织结构代码2"...]
+        "data":["组织机构代码1组织结构代码2"...]
     }
 ```
 
@@ -34,7 +34,7 @@
     // req.params
     {
         // data的长度不超过单页显示长度, 每页数据页面缓存
-        data: ["组织机构代码1","组织结构代码2"...]
+        data: ["组织机构代码1组织结构代码2"...]
     }
     
     // req
@@ -57,3 +57,39 @@
 ```
 
 1. 获得右侧筛选条件（行业，规模，指标）的接口？？？
+
+
+---
+
+# 组件
+
+## 查询框组件 searchCompanyInput
+
+prop => formInline searchByStationName
+
+v-model => formInline.address // 待查询输入文本
+
+@click => searchByStationName // 调用输入接口
+
+## 条件过滤组件 searchKeyCon
+
+prop => addtags removetags drawing isInDrawing nodrawering
+
+@click => addtags // 增加筛选条件
+
+@click => removetags // 删除筛选条件
+
+@click => drawing // 开启画图找企业功能
+
+@click => nodrawing // 关闭画图找企业功能
+
+v-show => isInDrawing // 切换文本
+
+## 候选单位基本信息组件 conpanyListPanel 
+
+prop => // 待查询单位列表
+
+## 单位数据信息组件 conpanyDataPanel 
+
+prop => // 待查询单位列表
+

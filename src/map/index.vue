@@ -50,16 +50,16 @@
         <div class="content">
           
           <!-- 搜索框 -->
-          <searchCompanyInput></searchCompanyInput>
+          <searchCompanyInput :formInline="formInline" :searchByStationName="searchByStationName"></searchCompanyInput>
 
           <!-- 过滤器 -->
-          <searchKeyCon></searchKeyCon>
-
+          <searchKeyCon :addtags="addtags" :removetags="removetags" :drawing="drawing" :isInDrawing="isInDrawing" :nodrawering="nodrawering"></searchKeyCon>
+queryData
           <!-- 候选单位列表 -->
-          <companyListPanel></companyListPanel>
+          <companyListPanel :list="polyPointArray" :queryData="queryData"></companyListPanel>
 
-          <!-- 数据结果列表 -->
-          <companyDataPanel></companyDataPanel>
+          <!-- 数据结果列表 -->i
+          <companyDataPanel :list="polyPointArray" :isShowCompanyData="isShowCompanyData" :closeCompanyDataPanel="closeCompanyDataPanel"></companyDataPanel>
         
         </div>
 
@@ -157,6 +157,8 @@ import companyDataPanel from './companyDataPanel';
         polygonAfterDraw : [],
         /* 浮层的显示结果 */
         addressReasult : [],
+        // 是否显示查询数据结果
+        isShowCompanyData: false,
         /* 初始化 */
         map:null,
         center: {lng: 116.404, lat: 39.915},
@@ -484,9 +486,15 @@ import companyDataPanel from './companyDataPanel';
           }
         });
       },
+      queryData(){ 
+        console.log("queryData");
+        this.isShowCompanyData = true;
+      },
+      closeCompanyDataPanel(){
+        this.isShowCompanyData = false;
+      }
 
-
-    },
+    }
   }
 </script>
 

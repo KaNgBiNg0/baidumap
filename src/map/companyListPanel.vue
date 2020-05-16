@@ -1,8 +1,8 @@
 <template>
-  <div class="companyListPanel">
+  <div class="companyListPanel" v-show="list.length>0">
     <div class="tilte">
-      <span class="big">企业名称</span><span>共找到</span><span class="number">123</span><span>家企业</span>
-      <button class="btn">数据查询</button>
+      <span class="big">企业名称</span><span>共找到</span><span class="number" v-text="list.length"></span><span>家企业</span>
+      <button class="btn" @click.stop="queryData">数据查询</button>
     </div>
     <div class="list">
       <div v-for="(info, i) in showList" :key="i" class="item">
@@ -24,23 +24,25 @@
       </div>
     </div>
     <div class="pages">
-
+      <!-- pager-count应该是大于等于5 但是设置5以后宽度溢出 就先改成3 提示waring可以先无视 -->
+      <el-pagination class="pagination" background 
+			layout="prev, pager, next"
+      pager-count="3"
+      current-page.sync="index"
+			:page-sizes="[10,20,50,100]" 
+			:page-size="10"
+			:total="list.length"
+			@current-change="handleCurrentChange"  
+			@size-change="handleSizeChange" 
+			>
+		</el-pagination>
     </div>
   </div>
 </template>
-"name":"长安福特长安福特长安福特长安福特长安福特",
-          "businessType":"新能源",
-          "staffs": "员工人数",
-          "companyType":"国企",
-          "address":"地址",
-          "phone":"电话",
-    
-          // 数据查询使用
-          "code": "组织机构代码"
 <script type="text/ecmascript-6">
 
   export default {
-    props:["list"],
+    props:["list", "queryData"],
     data(){return {
        showList: [{
           "name":"长安福特有限责热公司",
@@ -58,15 +60,163 @@
           "address":"北京市海淀区中关村",
           "phone":"101010101010",
           "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
        }],
-       length: 0,
        index: 0
     }},
+    methods:{
+      handleCurrentChange(){
+        console.log(arguments)
+      },
+      handleSizeChange(){}
+    },
     watch:{
       list(){
         // 数据请求
-        this.showList = [];
-        this.length =  list.length;
+        this.showList = [{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       },{
+          "name":"长安福特有限责热公司",
+          "businessType":"新能源企业",
+          "staffs": "300",
+          "companyType":"国企",
+          "address":"北京市海淀区中关村",
+          "phone":"101010101010",
+          "code": "10100101010101"
+       }];
         this.index = 0;
       }
     }
@@ -85,6 +235,7 @@
   display: flex;
   flex-direction: column;
   pointer-events: auto;
+  background: #ffffff;
 
   .tilte {
     flex: none;
@@ -135,8 +286,8 @@
 
   .list {
     flex: auto;
-    background: #ffffff;
     position: relative;
+    overflow:auto;
     
     .item {
       height: 102px;
@@ -147,16 +298,17 @@
       .No {
         font: 24px/24px "ArialMT";
         color: #ff9e2c;
-        margin: 28px 22px auto 6px;
+        margin: 28px auto auto 6px;
         display:inline-block;
         vertical-align: top;
+        display:inline-block;
+        width:37px;
       }
 
       .companyInfo {
         width:270px;
         height:103px;
         display: inline-block;
-
 
         .name{
           width: 100%;
@@ -210,7 +362,23 @@
   .pages {
     flex: none;
     height: 58px;
-    width: 100%;
+    width: 312px;
+    margin:0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .el-pagination{
+      width: 312px;
+      text-align: center;
+    }
+
+    .el-pagination .btn-next,
+    .el-pagination .btn-prev,
+    .el-pagination .el-pager .number  {
+      background: #f5f5f5;
+      border: 1px solid #e3e8ee
+    }
   }
 }
  
