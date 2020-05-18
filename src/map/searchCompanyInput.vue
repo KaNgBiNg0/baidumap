@@ -34,7 +34,7 @@
 
   input[type=text] {
     text-align: left;
-    font: 12px/40px "Simsun";
+    font: 12px/40px "SimSun";
     color:#999999;
     width:291px;
     display: inline-block;

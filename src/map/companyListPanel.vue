@@ -242,7 +242,7 @@
     width: 100%;
     height: 53px;
     background: #ddebfc;
-    font:12px/58px "Simsun";
+    font:12px/58px "SimSun";
     color: #999999;
     position: relative;
 
@@ -330,7 +330,7 @@
             vertical-align: bottom;
             padding: 3px 10px;
             margin-right: 10px;
-            font: 12px/12px "Simsun";
+            font: 12px/12px "SimSun";
             display: inline-block;
           }
 
@@ -353,6 +353,12 @@
         .connect {
           height:37px;
           line-height: 37px;
+
+          .address, .phone {
+            font: 12px/37px "SimSun";
+            color: #666666;
+            margin-right: 10px
+          }
         }
       }
     }
