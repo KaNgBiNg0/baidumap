@@ -4,7 +4,6 @@
   </div>
 </template>
 
-
 <script>
 
 import Map from './map'
